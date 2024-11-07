@@ -1,6 +1,22 @@
 #arquivo principal que vai rodar o jogo
-from peças import *
+from importar import *
+
+os.system("cls")
+
 run = True
 
 while(run):
-    pass
+    players = [
+        {
+            "tabuleiro" : tabuleiroVazio(),
+            "vetor_dmg" : vetorVazio()
+        },
+        {
+            "tabuleiro" : tabuleiroVazio(),
+            "vetor_dmg" : vetorVazio()
+        }
+    ]
+
+    printTabuleiro(players[1])
+    input("rodou...")
+    break
