@@ -48,7 +48,7 @@ while(run):
                     break
                 else:
                     print("input inválido")
-            except TypeError:
+            except:
                 print("input inválido")
 
         while True:
