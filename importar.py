@@ -4,3 +4,4 @@ else:
    # -------------------- ARQUIVOS DO JOGO ---------------------------
    from peças import * 
    from funcoes import *
+   import string

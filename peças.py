@@ -23,7 +23,41 @@ else:
     pecas = []
     
     pecas.append(Peca([
-            ["D", 0],
-            ["D", 0],
+            ["D","N"],
+            ["D","N"],
             ["D","A"]
         ]))
+    pecas.append(Peca([
+            ["D", "A"],
+            ["A", "D"],
+        ]))
+    pecas.append(Peca([
+            ["A", 0, "A"]
+        ]))
+    pecas.append(Peca([
+            ["D", 0, "D"]
+        ]))
+    
+    pecas.append(Peca([
+            ["D"],
+            [0],
+            ["D"]
+        ]))
+    pecas.append(Peca([
+            ["A", 0, "A"]
+        ]))
+    
+    pecas.append(Peca([
+            ["A"],
+            [0],
+            ["A"]
+        ]))
+    pecas.append(Peca([
+            ["A", "D" ,"A"],
+            ["N", "D", "N"]
+        ]))
+    pecas.append(Peca([
+            ["D", "A" ,"D"],
+            ["N", "A", "N"]
+        ]))
+    
