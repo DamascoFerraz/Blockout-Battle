@@ -8,6 +8,9 @@ else:
   def tabuleiroVazio():
     return [[0 for _ in range(5)] for _ in range(5)]
   
+  def layerVazio():
+    return [["N" for _ in range(5)] for _ in range(5)]
+  
   def vetorVazio():
     return[0 for _ in range(5)]
   
@@ -43,6 +46,41 @@ else:
           else:
             print("|", end='')
 
+  def printColocandoPeca(tabuleiro = list,layer = list):
+    a = {
+        0 : "A",
+        1 : "B",
+        2 : "C",
+        3 : "D",
+        4 : "E",
+        5 : "F",
+        6 : "G",
+        7 : "H",
+        8 : "I",
+        9 : "J"
+    }
+    for i in range(len(tabuleiro)):
+        print(f"{a[i]} ", end=' ')
+        for ii in range(len(tabuleiro[i])):
+          if layer[i][ii]!='N':
+            print(f"[{layer[i][ii]}]".replace("0"," "), end='')
+          else:
+            print(f" {tabuleiro[i][ii]} ".replace("0"," "), end='')
+          if ii+1==len(tabuleiro[i]):
+            print("", end='\n')
+          else:
+            print("|", end='')
+
+  def overflowX(x,p,t):
+    if x+len(p[0])-len(t[0])<0:
+      return 0
+    return x+len(p[0])-len(t[0])
+
+  def overflowY(y,p,t):
+    if y+len(p)-len(t)<0:
+      return 0
+    return y+len(p)-len(t)
+
   def printVetor(vetor = list):
     print(f"  {vetor}".replace(", "," | ").replace('[','! ').replace(']',' !'))
 
@@ -70,6 +108,27 @@ else:
 
     print("├───────────────────────┤")
     printTabuleiro(players[first]['tabuleiro'])
+
+    printVetor(players[first]['vetor_dmg'])
+    printVida(players[first]['vida'])
+    print(f'═══╣ VEZ D JOGADOR {first+1} ╠═══')
+
+  def printRodadaColocandoPeca(turn, players,layer):
+    if turn % 2 == 0:
+      first = 0
+      last = 1
+    else:
+      first = 1
+      last = 0
+
+    print(f'════════╣TURNO {turn}╠════════')
+    printVida(players[last]['vida'])
+    printVetor(players[last]['vetor_dmg'])
+
+    printTabuleiro(players[last]['tabuleiro'])
+
+    print("├───────────────────────┤")
+    printColocandoPeca(players[first]['tabuleiro'],layer)
 
     printVetor(players[first]['vetor_dmg'])
     printVida(players[first]['vida'])
@@ -103,6 +162,8 @@ else:
     if x+len(p[0])>len(t[0]):
       return False
     elif y+len(p)>len(t):
+      return False
+    elif x<0 or y<0:
       return False
     else:
       return True

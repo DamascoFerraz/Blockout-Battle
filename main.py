@@ -51,22 +51,61 @@ while(run):
             except TypeError:
                 print("input inválido")
 
+        pecaEscolhida = players[ativo]['mao'][escolha-1]
+
+        x=0
+        y=0
+
         while True:
-            posicao = input("digite a posicao onde colocará a peça (pelo primeiro bloco a esquerda)\n>")
-            try:
-                x = int(posicao[1])-1
-                y = str(posicao[0].upper())
-            except:
-                print("input inválido")
+            os.system("cls")
 
-            validy = ''.join(chr(i) for i in range(ord('A'), ord('A') + 5))
-            if y in validy:
-                if(pecaColocavel(string.ascii_uppercase.index(y),x,players[ativo]['mao'][escolha-1],players[ativo]['tabuleiro'])):
-                    colocarPeca(string.ascii_uppercase.index(y),x,players[ativo]['mao'][escolha-1],players[ativo]['tabuleiro'])
+            layer = layerVazio()
+
+            colocarPeca(y,x,pecaEscolhida,layer)
+
+            printRodadaColocandoPeca(turno,players,layer)
+
+            while True:
+                try:
+                    resposta = str(input("Mova a peça (W,A,S,D) e posicione-a (1),\nvoce pode rotaciona-la com (R)\n>"))
                     break
-                else:
-                    print("input inválido")
+                except:
+                    pass
 
+            if resposta == "A" or resposta == "a":
+                if pecaColocavel(y,x-1,pecaEscolhida,layer):
+                    x-=1
+                else:
+                    pass
+            elif resposta == "D" or resposta == "d":
+                if pecaColocavel(y,x+1,pecaEscolhida,layer):
+                    x+=1
+                else:
+                    pass
+            elif resposta == "S" or resposta == "s":
+                if pecaColocavel(y+1,x,pecaEscolhida,layer):
+                    y+=1
+                else:
+                    pass
+            elif resposta == "W" or resposta == "w":
+                if pecaColocavel(y-1,x,pecaEscolhida,layer):
+                    y-=1
+                else:
+                    pass
+            elif resposta == "R" or resposta == "r":
+
+                pecaEscolhida = np.rot90(pecaEscolhida)
+                
+                if not pecaColocavel(y,x,pecaEscolhida,layer):
+                    x-=overflowX(x,pecaEscolhida,layer)
+                    y-=overflowY(y,pecaEscolhida,layer)
+                    
+            elif resposta == "1":
+                colocarPeca(y,x,pecaEscolhida,players[ativo]['tabuleiro'])
+                break
+            else:
+                pass
+                    
         atualizarVetor(players[ativo],players[inativo])
 
         players[ativo]['vida']-= atualizarVida(players[ativo]['vetor_dmg'])
@@ -78,4 +117,5 @@ while(run):
             print("╠══════════════════════════╣")
             break
         turno+=1
+    
     run = False
