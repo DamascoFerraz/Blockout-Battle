@@ -60,4 +60,12 @@ else:
             ["D", "A" ,"D"],
             ["N", "A", "N"]
         ]))
+    pecas.append(Peca([
+            ["N", "A" ,"D"],
+            ["D", "A", "N"]
+        ]))
+    pecas.append(Peca([
+            ["N", "D" ,"A"],
+            ["A", "D", "N"]
+        ]))
     
