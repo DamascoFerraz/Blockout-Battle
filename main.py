@@ -33,7 +33,9 @@ while(run):
             ativo = 1
             inativo =0
 
-        atualizarVetor(players[ativo],players[inativo])
+        layer = layerVazio()
+
+        atualizarVetor(players[ativo],players[inativo],layer)
 
         printRodada(turno,players)
 
@@ -44,14 +46,13 @@ while(run):
         while True:
             try:
                 escolha = int(input(">"))
-                if (escolha-1<len(players[ativo]['mao']) and escolha-1>0) or (escolha!=int):
+                if (escolha-1<len(players[ativo]['mao']) and escolha-1>=0):
+                    pecaEscolhida = players[ativo]['mao'][escolha-1]
                     break
                 else:
                     print("input inválido")
             except:
                 print("input inválido")
-
-        pecaEscolhida = players[ativo]['mao'][escolha-1]
 
         x=0
         y=0
@@ -62,6 +63,8 @@ while(run):
             layer = layerVazio()
 
             colocarPeca(y,x,pecaEscolhida,layer)
+
+            atualizarVetor(players[ativo],players[inativo],layer)
 
             printRodadaColocandoPeca(turno,players,layer)
 
@@ -106,8 +109,8 @@ while(run):
             else:
                 pass
                     
-        atualizarVetor(players[ativo],players[inativo])
-
+        atualizarVetor(players[ativo],players[inativo],layer)
+        layer = layerVazio()
         players[ativo]['vida']-= atualizarVida(players[ativo]['vetor_dmg'])
 
         if players[ativo]['vida']<=0:

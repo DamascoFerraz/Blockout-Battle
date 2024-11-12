@@ -185,20 +185,47 @@ else:
     else:
       return 0
     
-  def atualizarVetor(ativo,inativo):
+  def atualizarVetor(ativo,inativo,layer):
       
+    # vetor do player ativo
+
       for i in range(len(ativo['vetor_dmg'])):
-        
         ativo['vetor_dmg'][i] = 0
 
         for ii in range(len(ativo['vetor_dmg'])):
-
+          
           if inativo['tabuleiro'][ii][i] == "A":
                 ativo['vetor_dmg'][i]+=1
-                
-          if ativo['tabuleiro'][ii][i] == "D":
+
+          if layer[ii][i]!='N':
+
+            if layer[ii][i]=="D":
+              ativo['vetor_dmg'][i]-=1
+
+          elif ativo['tabuleiro'][ii][i] == "D":
                 ativo['vetor_dmg'][i]-=1
+
         if ativo['vetor_dmg'][i] < 0:
           ativo['vetor_dmg'][i] = 0
+
+      # vetor do player inativo
+          
+      for i in range(len(inativo['vetor_dmg'])):
+        inativo['vetor_dmg'][i] = 0
+
+        for ii in range(len(inativo['vetor_dmg'])):
+
+          if layer[ii][i] != 'N':
+            if layer[ii][i] == "A":
+              inativo['vetor_dmg'][i]+=1
+          elif ativo['tabuleiro'][ii][i] == "A":
+            inativo['vetor_dmg'][i]+=1
+          
+          if inativo['tabuleiro'][ii][i] == "D":
+            inativo['vetor_dmg'][i]-=1
+        
+        if inativo['vetor_dmg'][i]<=0:
+          inativo['vetor_dmg'][i] =0
+          
 
 # endregion
