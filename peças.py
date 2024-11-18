@@ -28,29 +28,19 @@ else:
             ["D","A"]
         ]))
     pecas.append(Peca([
+            ["A","N"],
+            ["A","N"],
+            ["A","D"]
+        ]))
+    pecas.append(Peca([
             ["D", "A"],
             ["A", "D"],
         ]))
     pecas.append(Peca([
-            ["A", 0, "A"]
+            ["A", 0 , "A"]
         ]))
     pecas.append(Peca([
-            ["D", 0, "D"]
-        ]))
-    
-    pecas.append(Peca([
-            ["D"],
-            [0],
-            ["D"]
-        ]))
-    pecas.append(Peca([
-            ["A", 0, "A"]
-        ]))
-    
-    pecas.append(Peca([
-            ["A"],
-            [0],
-            ["A"]
+            ["D", 0 , "D"]
         ]))
     pecas.append(Peca([
             ["A", "D" ,"A"],
@@ -68,4 +58,30 @@ else:
             ["N", "D" ,"A"],
             ["A", "D", "N"]
         ]))
-    
+    pecas.append(Peca([
+            ["A", "D"],
+            ["A",  0 ],
+            ["A", "D"]
+        ]))
+    pecas.append(Peca([
+            ["D", "A"],
+            ["D", 0  ],
+            ["D", "A"]
+        ]))
+    pecas.append(Peca([
+            ["D"],
+            ["D"],
+            ["D"],
+            ["D"]
+        ]))
+    pecas.append(Peca([
+            ["A"],
+            ["A"],
+            [ 0 ],
+            ["A"]
+        ]))
+    pecas.append(Peca([
+            [ 0 ,"D","D"],
+            ["A","N","N"],
+            ["A","N","N"]
+    ]))
